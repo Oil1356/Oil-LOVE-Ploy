@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันคบรอบของเรา</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background: #baf2ff;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .aac h1 {
+            color: #ff00d4;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .container p {
+            font-size: 1.2rem;
+            color: #ef0303;
+            margin: 10px 0;
+        }
+        .container .anniversary {
+            color: #d10000;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .images-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+            margin-bottom: 50px;
+        }
+        .container a {
+            color: #e1086d;
+            font-size: 1rem;
+            margin-bottom: -50px;
+        }
+        img {
+            width: 100px; /* ขนาดเล็กลง */
+            height: 100px; /* ขนาดเล็กลง */
+            object-fit: contain; /* ไม่ให้บิดเบี้ยว */
+            border-radius: 20px;
+            border: 5px solid #dc69ff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .heart {
+            position: absolute;
+            top: -80%;
+            left: 44.5%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: rgb(230, 0, 255);
+            animation: pulse 0.1s infinite;
+            z-index: 1;
+        }
+        .oil{
+            position: absolute;
+            top: 120%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: rgb(162, 0, 255);
+        }
+        .ploy{
+            position: absolute;
+            top: 120%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: rgb(162, 0, 255);
+
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer .heart {
+            color: red;
+            font-size: 1.5rem;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="aac">
+        <h1>วันคบรอบของเรา</h1>
+        </div>
+        <div class="images-container">
+            <img src="1.jpg" alt="รูปของคุณ">
+            <div class="ploy">พลอย</div>
+
+            <h5 class="heart">💗</h5>
+            <a>17/11/2024</a>
+
+            <img src="2.jpg" alt="รูปของแฟน">
+            <div class="oil">ออย</div>
+
+        </div>
+
+        <p id="result"></p>
+        <div class="footer">
+            ❤️ <span>เราจะอยู่ด้วยกันตลอดไป</span> ❤️
+        </div>
+    </div>
+
+    <script>
+        // กำหนดวันเริ่มคบกัน (รูปแบบ YYYY-MM-DD)
+        const startDate = "2024-11-17"; // แก้ไขวันที่เริ่มคบได้ที่นี่
+
+        function startCounting() {
+    const start = new Date(startDate);
+
+    setInterval(() => {
+        const now = new Date();
+        
+        // เพิ่ม 7 ชั่วโมง (7 * 60 * 60 * 1000 มิลลิวินาที)
+        const thailandTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+
+        const timeDifference = thailandTime - start;
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeDifference / 1000) % 60);
+
+        // ตรวจสอบวันที่ 17
+        const isAnniversary = thailandTime.getDate() === 17;
+
+        if (isAnniversary) {
+            document.getElementById('result').innerHTML = 
+                `<span class="anniversary">วันนี้เป็นวันที่ 17 ของเดือน! 🎉</span><br>เราอยู่ด้วยกันมาแล้ว ${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที!`;
+        } else {
+            document.getElementById('result').innerText = 
+                `เราคบกันมาแล้ว ${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที!`;
+        }
+    }, 1000);
+}
+
+
+
+        // เรียกใช้ฟังก์ชันเริ่มต้นการนับเมื่อโหลดหน้าเว็บ
+        startCounting();
+    </script>
+</body>
+</html>
